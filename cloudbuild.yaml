@@ -1,0 +1,22 @@
+steps:
+# This step logs in to dockerhub
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker login --username=$$USERNAME --password=$$PASSWORD']
+  secretEnv: ['USERNAME', 'PASSWORD']
+# This step builds and tags the image 
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker build -t $$USERNAME/undina:$SHORT_SHA .']
+  secretEnv: ['USERNAME']
+# This step pushes the image to the container registry 
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: ['-c', 'docker push $$USERNAME/undina:$SHORT_SHA']
+  secretEnv: ['USERNAME']
+availableSecrets:
+  secretManager:
+  - versionName: projects/billsgate/secrets/docker-username/versions/1
+    env: 'USERNAME'
+  - versionName: projects/billsgate/secrets/docker-password/versions/1
+    env: 'PASSWORD'
