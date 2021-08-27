@@ -15,7 +15,7 @@ steps:
   args: ['-c', 'docker push $$USERNAME/undina:$SHORT_SHA']
   secretEnv: ['USERNAME']
 # This step pushes the image to the container registry 
-- name: 'kevinyu0506/update-kustomize-image:v1.0'
+- name: 'kevinyu0506/update-kustomize-image:v1.1'
   env:
   - 'REPO_ACCESS_TOKEN=$$K8S_MANIFESTS_ACCESS_TOKEN'
   - 'REPO_URL=https://github.com/billsgates/k8s-manifests.git'
