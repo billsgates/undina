@@ -14,9 +14,21 @@ steps:
   entrypoint: 'bash'
   args: ['-c', 'docker push $$USERNAME/undina:$SHORT_SHA']
   secretEnv: ['USERNAME']
+# This step pushes the image to the container registry 
+- name: 'kevinyu0506/update-kustomize-image:v1.0'
+  env:
+  - 'REPO_ACCESS_TOKEN=$$K8S_MANIFESTS_ACCESS_TOKEN'
+  - 'REPO_URL=https://github.com/billsgates/k8s-manifests.git'
+  - 'KUSTOMIZE_PATH=overlays/alpha/billsgates'
+  - 'GITHUB_USER=cloudbuild-trigger'
+  - 'GITHUB_USER_EMAIL='
+  - 'IMAGE=$$USERNAME/undina'
+  - 'IMAGE_TAG=$SHORT_SHA'
 availableSecrets:
   secretManager:
   - versionName: projects/billsgate/secrets/docker-username/versions/1
     env: 'USERNAME'
   - versionName: projects/billsgate/secrets/docker-password/versions/1
     env: 'PASSWORD'
+  - versionName: projects/billsgate/secrets/k8s-manifests-access-token/versions/1
+    env: 'K8S_MANIFESTS_ACCESS_TOKEN'
