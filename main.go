@@ -32,7 +32,7 @@ func init() {
 }
 
 func sayHello(c *gin.Context) {
-	c.String(http.StatusOK, "Hello, new version.")
+	c.String(http.StatusOK, "Hello, new version build by GCP Cloud Build.")
 }
 
 func sayPongJSON(c *gin.Context) {
