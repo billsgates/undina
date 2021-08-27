@@ -12,7 +12,7 @@ FROM alpine:3.14.0
 WORKDIR /app
 
 COPY --from=builder /usr/local/bin/undina /app/undina
-COPY --from=builder /app/config.json /app/config.json
+#COPY --from=builder /app/config.json /app/config.json
 
 # need to fix time zone info in alpine docker image (http://www.csyangchen.com/go-alpine-time-location.html)
 COPY --from=builder /usr/local/go/lib/time/zoneinfo.zip /opt/zoneinfo.zip
