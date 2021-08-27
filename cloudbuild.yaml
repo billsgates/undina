@@ -24,6 +24,7 @@ steps:
   - 'GITHUB_USER_EMAIL='
   - 'IMAGE=$$USERNAME/undina'
   - 'IMAGE_TAG=$SHORT_SHA'
+  secretEnv: ['K8S_MANIFESTS_ACCESS_TOKEN', 'USERNAME']
 availableSecrets:
   secretManager:
   - versionName: projects/billsgate/secrets/docker-username/versions/1
