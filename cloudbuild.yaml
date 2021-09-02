@@ -17,7 +17,7 @@ steps:
 # This step updates the image tag in the manifests repository 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'docker run -e BUILD_PHASE=${_BUILD_PHASE} -e REPO_ACCESS_TOKEN=$$K8S_MANIFESTS_ACCESS_TOKEN -e REPO_URL=${_REPO_URL} -e KUSTOMIZE_PATH= -e GITHUB_USER=$$USERNAME -e GITHUB_USER_EMAIL=${_GITHUB_USER_EMAIL} -e IMAGE=${_IMAGE} -e IMAGE_TAG=${_BUILD_PHASE}-$SHORT_SHA kevinyu0506/update-kustomize-image:v1.5']
+  args: ['-c', 'docker run -e BUILD_PHASE=${_BUILD_PHASE} -e REPO_ACCESS_TOKEN=$$K8S_MANIFESTS_ACCESS_TOKEN -e REPO_URL=${_REPO_URL} -e KUSTOMIZE_PATH=${_KUSTOMIZE_PATH} -e GITHUB_USER=$$USERNAME -e GITHUB_USER_EMAIL=${_GITHUB_USER_EMAIL} -e IMAGE=${_IMAGE} -e IMAGE_TAG=${_BUILD_PHASE}-$SHORT_SHA kevinyu0506/update-kustomize-image:v1.5']
   secretEnv: ['K8S_MANIFESTS_ACCESS_TOKEN', 'USERNAME']
 substitutions:
   _BUILD_PHASE: alpha
