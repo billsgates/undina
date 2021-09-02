@@ -7,18 +7,24 @@ steps:
 # This step builds and tags the image 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'docker build -t $$USERNAME/undina:$SHORT_SHA .']
+  args: ['-c', 'docker build -t $$USERNAME/undina:${_BUILD_PHASE}-$SHORT_SHA .']
   secretEnv: ['USERNAME']
 # This step pushes the image to the container registry 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'docker push $$USERNAME/undina:$SHORT_SHA']
+  args: ['-c', 'docker push $$USERNAME/undina:${_BUILD_PHASE}-$SHORT_SHA']
   secretEnv: ['USERNAME']
 # This step updates the image tag in the manifests repository 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'docker run -e BUILD_PHASE=ALPHA -e REPO_ACCESS_TOKEN=$$K8S_MANIFESTS_ACCESS_TOKEN -e REPO_URL=https://github.com/billsgates/k8s-manifests.git -e KUSTOMIZE_PATH=overlays/alpha/billsgate-apps -e GITHUB_USER=$$USERNAME -e GITHUB_USER_EMAIL=kevinyu05062006@gmail.com -e IMAGE=$$USERNAME/undina -e IMAGE_TAG=$SHORT_SHA kevinyu0506/update-kustomize-image:v1.5']
+  args: ['-c', 'docker run -e BUILD_PHASE=${_BUILD_PHASE} -e REPO_ACCESS_TOKEN=$$K8S_MANIFESTS_ACCESS_TOKEN -e REPO_URL=${_REPO_URL} -e KUSTOMIZE_PATH= -e GITHUB_USER=$$USERNAME -e GITHUB_USER_EMAIL=${_GITHUB_USER_EMAIL} -e IMAGE=${_IMAGE} -e IMAGE_TAG=${_BUILD_PHASE}-$SHORT_SHA kevinyu0506/update-kustomize-image:v1.5']
   secretEnv: ['K8S_MANIFESTS_ACCESS_TOKEN', 'USERNAME']
+substitutions:
+  _BUILD_PHASE: alpha
+  _REPO_URL: https://github.com/billsgates/k8s-manifests.git
+  _KUSTOMIZE_PATH: overlays/alpha/billsgate-apps
+  _GITHUB_USER_EMAIL: kevinyu05062006@gmail.com
+  _IMAGE: kevinyu0506/undina
 availableSecrets:
   secretManager:
   - versionName: projects/billsgate/secrets/docker-username/versions/1
