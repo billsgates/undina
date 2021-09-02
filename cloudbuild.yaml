@@ -17,7 +17,7 @@ steps:
 # This step updates the image tag in the manifests repository 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'docker run -e BUILD_PHASE=ALPHA -e REPO_ACCESS_TOKEN=$$K8S_MANIFESTS_ACCESS_TOKEN -e REPO_URL=https://github.com/billsgates/k8s-manifests.git -e KUSTOMIZE_PATH=overlays/alpha/billsgate-apps -e GITHUB_USER=$$USERNAME -e GITHUB_USER_EMAIL=kevinyu05062006@gmail.com -e IMAGE=$$USERNAME/undina -e IMAGE_TAG=$SHORT_SHA kevinyu0506/update-kustomize-image:v1.2']
+  args: ['-c', 'docker run -e BUILD_PHASE=ALPHA -e REPO_ACCESS_TOKEN=$$K8S_MANIFESTS_ACCESS_TOKEN -e REPO_URL=https://github.com/billsgates/k8s-manifests.git -e KUSTOMIZE_PATH=overlays/alpha/billsgate-apps -e GITHUB_USER=$$USERNAME -e GITHUB_USER_EMAIL=kevinyu05062006@gmail.com -e IMAGE=$$USERNAME/undina -e IMAGE_TAG=$SHORT_SHA kevinyu0506/update-kustomize-image:v1.5']
   secretEnv: ['K8S_MANIFESTS_ACCESS_TOKEN', 'USERNAME']
 availableSecrets:
   secretManager:
