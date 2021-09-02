@@ -22,7 +22,7 @@ steps:
 substitutions:
   _BUILD_PHASE: alpha
   _REPO_URL: https://github.com/billsgates/k8s-manifests.git
-  _KUSTOMIZE_PATH: overlays/alpha/billsgate-apps
+  _KUSTOMIZE_PATH: overlays/${_BUILD_PHASE}/billsgate-apps
   _GITHUB_USER_EMAIL: kevinyu05062006@gmail.com
   _IMAGE: kevinyu0506/undina
 availableSecrets:
