@@ -23,7 +23,7 @@ substitutions:
   _KUSTOMIZE_PATH: overlays/${_BUILD_PHASE}/billsgate-apps
   _GITHUB_USER_EMAIL: kevinyu05062006@gmail.com
   _IMAGE: kevinyu0506/undina
-  _IMAGE_TAG: ${_BUILD_PHASE}-$SHORT_SHA 
+  _IMAGE_TAG: ${_BUILD_PHASE}-${SHORT_SHA}
 availableSecrets:
   secretManager:
   - versionName: projects/billsgate/secrets/docker-username/versions/1
