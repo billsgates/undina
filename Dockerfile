@@ -1,6 +1,9 @@
 #FROM golang:buster AS builder
 FROM golang:1.16.6-alpine AS builder
 
+ARG BUILD_VERSION=local
+ENV BUILD_VERSION=${BUILD_VERSION}
+
 WORKDIR /app
 
 ADD . .
