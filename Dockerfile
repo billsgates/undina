@@ -1,4 +1,5 @@
-#FROM golang:buster AS builder
+ARG BUILD_VERSION=local
+
 FROM golang:1.16.6-alpine AS builder
 
 WORKDIR /app
@@ -8,6 +9,9 @@ ADD . .
 RUN go build -o /usr/local/bin/undina
 
 FROM alpine:3.14.0
+
+ARG BUILD_VERSION
+ENV BUILD_VERSION=${BUILD_VERSION}
 
 WORKDIR /app
 

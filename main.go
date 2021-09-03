@@ -1,6 +1,7 @@
 package main
 
 import (
+    "os"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -32,7 +33,9 @@ func init() {
 }
 
 func sayHello(c *gin.Context) {
-	c.String(http.StatusOK, "Hello, new version build by GCP Cloud Build.")
+    version := os.Getenv("BUILD_VERSION")
+    s := fmt.Sprintf("Hello, backend version: %s", version)
+	c.String(http.StatusOK, s)
 }
 
 func sayPongJSON(c *gin.Context) {
