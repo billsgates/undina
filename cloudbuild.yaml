@@ -7,7 +7,7 @@ steps:
 # This step builds and tags the image 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'
-  args: ['-c', 'docker build --build-arg BUILD_VERSION=${_IMAGE_TAG} -t ${_IMAGE}:${_IMAGE_TAG} .']
+  args: ['-c', 'docker build --build-arg BUILD_VERSION=${_IMAGE_TAG} --build-arg ENV_PHASE=${_BUILD_PHASE} -t ${_IMAGE}:${_IMAGE_TAG} .']
 # This step pushes the image to the container registry 
 - name: 'gcr.io/cloud-builders/docker'
   entrypoint: 'bash'

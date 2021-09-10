@@ -1,5 +1,6 @@
 {
     "debug": true,
+    "env": "alpha",
     "server": {
       "address": "5000"
     },

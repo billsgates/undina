@@ -1,0 +1,17 @@
+{
+    "debug": true,
+    "env": "beta",
+    "server": {
+      "address": "5000"
+    },
+    "context":{
+      "timeout": 5
+    },
+    "database": {
+        "host": "mysql",
+        "port": "3306",
+        "user": "root",
+        "pass": "password",
+        "name": "hermitcrab_db"
+    }
+}
