@@ -13,5 +13,10 @@
         "user": "root",
         "pass": "password",
         "name": "hermitcrab_db"
+    },
+    "auth": {
+      "hash_salt": "hash_salt",
+      "signing_key": "signing_key",
+      "token_ttl": 172800
     }
 }
