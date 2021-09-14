@@ -3,6 +3,7 @@ module undina
 go 1.16
 
 require (
+	github.com/dgrijalva/jwt-go/v4 v4.0.0-preview1
 	github.com/gin-contrib/cors v1.3.1
 	github.com/gin-gonic/gin v1.7.2
 	github.com/sirupsen/logrus v1.8.1
