@@ -25,6 +25,10 @@ import (
 	_serviceHandlerHttpDelivery "undina/service/delivery/http"
 	_serviceRepo "undina/service/repository/mysql"
 	_serviceUsecase "undina/service/usecase"
+
+	_roomHandlerHttpDelivery "undina/room/delivery/http"
+	_roomRepo "undina/room/repository/mysql"
+	_roomUsecase "undina/room/usecase"
 )
 
 func init() {
@@ -95,6 +99,9 @@ func main() {
 	serviceRepo := _serviceRepo.NewmysqlServiceRepository(db)
 	serviceUsecase := _serviceUsecase.NewServiceUsecase(serviceRepo, timeoutContext)
 
+	roomRepo := _roomRepo.NewmysqlRoomRepository(db)
+	roomUsecase := _roomUsecase.NewRoomUsecase(roomRepo, timeoutContext)
+
 	authUsecase := _authUsecase.NewAuthUsecase(
 		userRepo,
 		viper.GetString("auth.hash_salt"),
@@ -108,6 +115,7 @@ func main() {
 		_authHandlerHttpDelivery.NewAuthHandler(v1Router, authUsecase)
 		_userHandlerHttpDelivery.NewUserHandler(v1Router, authMiddleware, userUsecase)
 		_serviceHandlerHttpDelivery.NewServiceHandler(v1Router, serviceUsecase)
+		_roomHandlerHttpDelivery.NewRoomHandler(v1Router, authMiddleware, roomUsecase)
 	}
 
 	logrus.Fatal(r.Run(":" + viper.GetString("server.address")))
