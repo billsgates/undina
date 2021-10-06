@@ -1,10 +1,10 @@
 package main
 
 import (
-    "os"
 	"fmt"
 	"net/http"
 	"net/url"
+	"os"
 	"time"
 
 	"github.com/gin-contrib/cors"
@@ -15,9 +15,20 @@ import (
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 
+	_authHandlerHttpDelivery "undina/auth/delivery/http"
+	_authUsecase "undina/auth/usecase"
+
+	_userHandlerHttpDelivery "undina/user/delivery/http"
+	_userRepo "undina/user/repository/mysql"
+	_userUsecase "undina/user/usecase"
+
 	_serviceHandlerHttpDelivery "undina/service/delivery/http"
 	_serviceRepo "undina/service/repository/mysql"
 	_serviceUsecase "undina/service/usecase"
+
+	_roomHandlerHttpDelivery "undina/room/delivery/http"
+	_roomRepo "undina/room/repository/mysql"
+	_roomUsecase "undina/room/usecase"
 )
 
 func init() {
@@ -33,8 +44,8 @@ func init() {
 }
 
 func sayHello(c *gin.Context) {
-    version := os.Getenv("BUILD_VERSION")
-    s := fmt.Sprintf("Hello, backend version: %s", version)
+	version := os.Getenv("BUILD_VERSION")
+	s := fmt.Sprintf("Hello, backend version: %s", version)
 	c.String(http.StatusOK, s)
 }
 
@@ -82,11 +93,29 @@ func main() {
 
 	timeoutContext := time.Duration(viper.GetInt("context.timeout")) * time.Second
 
+	userRepo := _userRepo.NewmysqlUserRepository(db)
+	userUsecase := _userUsecase.NewUserUsecase(userRepo, timeoutContext)
+
 	serviceRepo := _serviceRepo.NewmysqlServiceRepository(db)
 	serviceUsecase := _serviceUsecase.NewServiceUsecase(serviceRepo, timeoutContext)
+
+	roomRepo := _roomRepo.NewmysqlRoomRepository(db)
+	roomUsecase := _roomUsecase.NewRoomUsecase(roomRepo, timeoutContext)
+
+	authUsecase := _authUsecase.NewAuthUsecase(
+		userRepo,
+		viper.GetString("auth.hash_salt"),
+		[]byte(viper.GetString("auth.signing_key")),
+		viper.GetDuration("auth.token_ttl"),
+	)
+	authMiddleware := _authHandlerHttpDelivery.NewAuthMiddleware(authUsecase)
+
 	v1Router := r.Group("/api/v1/")
 	{
+		_authHandlerHttpDelivery.NewAuthHandler(v1Router, authUsecase)
+		_userHandlerHttpDelivery.NewUserHandler(v1Router, authMiddleware, userUsecase)
 		_serviceHandlerHttpDelivery.NewServiceHandler(v1Router, serviceUsecase)
+		_roomHandlerHttpDelivery.NewRoomHandler(v1Router, authMiddleware, roomUsecase)
 	}
 
 	logrus.Fatal(r.Run(":" + viper.GetString("server.address")))
