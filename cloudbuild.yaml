@@ -26,9 +26,9 @@ substitutions:
   _IMAGE_TAG: ${_BUILD_PHASE}-${SHORT_SHA}
 availableSecrets:
   secretManager:
-  - versionName: projects/billsgate/secrets/docker-username/versions/1
+  - versionName: projects/679637459211/secrets/docker-username/versions/1
     env: 'USERNAME'
-  - versionName: projects/billsgate/secrets/docker-password/versions/1
+  - versionName: projects/679637459211/secrets/docker-password/versions/1
     env: 'PASSWORD'
-  - versionName: projects/billsgate/secrets/k8s-manifests-access-token/versions/1
+  - versionName: projects/679637459211/secrets/k8s-manifests-access-token/versions/1
     env: 'K8S_MANIFESTS_ACCESS_TOKEN'
