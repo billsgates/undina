@@ -5,6 +5,7 @@ import (
 	"undina/domain"
 
 	"cloud.google.com/go/bigtable"
+	"github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
 
@@ -27,9 +28,10 @@ func (m *mysqlUserRepository) Create(ctx context.Context, user *domain.User) (er
 	mut := bigtable.NewMutation()
 	mut.Set("email", "login", bigtable.Now(), []byte(user.Email))
 	mut.Set("password_digest", "login", bigtable.Now(), []byte(user.PasswordDigest))
-	if err = tbl.Apply(ctx, "com.google.cloud", mut); err != nil {
+	if err = tbl.Apply(ctx, user.Name, mut); err != nil {
 		return err
 	}
+	logrus.Info("bigtable insert success")
 
 	return nil
 }

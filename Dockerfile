@@ -12,6 +12,7 @@ COPY . .
 
 # Override config
 RUN cp ./config/${ENV_PHASE}/config.json ./config/config.json
+RUN cp ./billsgate-351404-56cd186a1380.json ./config/billsgate-351404-56cd186a1380.json
 
 RUN go build -o ./undina
 
@@ -28,7 +29,7 @@ COPY --from=builder /app/config/config.json /app/config/config.json
 # need to fix time zone info in alpine docker image (http://www.csyangchen.com/go-alpine-time-location.html)
 COPY --from=builder /usr/local/go/lib/time/zoneinfo.zip /opt/zoneinfo.zip
 ENV ZONEINFO /opt/zoneinfo.zip
-ENV GOOGLE_APPLICATION_CREDENTIALS /app/undina/billsgate-351404-56cd186a1380.json
+ENV GOOGLE_APPLICATION_CREDENTIALS /app/config/billsgate-351404-56cd186a1380.json
 
 EXPOSE 5000
 
