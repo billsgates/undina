@@ -18,5 +18,9 @@
       "hash_salt": "hash_salt",
       "signing_key": "signing_key",
       "token_ttl": 172800
+    },
+    "gcloud": {
+      "projectID": "billsgate-351404",
+      "instanceID": "bigtable"
     }
 }

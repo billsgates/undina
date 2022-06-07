@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "billsgate-351404",
+  "private_key_id": "56cd186a1380665517d242b4e595a442bc8ede18",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCWlHPG+FjLcuV7\nztVbb4JfxkiBQ5oXJv3HL4C6mG5hXTx5sVHCXSGJKvRAUHzrDO6arnPg8LdXHxzE\n5Rl9uVQAuQKgXY5vINCVeCmaDFiYIP+795LNXOdBH2zPp983nvUUgUMEZD5Ju8zT\ngNyVRBNdHFJDnozVDwie0VMQ6lDHQFMmOX2pmzlNL0kYmD5SQMuxT5M2j378eUVq\nyGgdcGSiMaFeFeya/vWA8A2tWnZX1eAX0VDEkXbCCgTkNVoOuihYd/SJC/VLzbMn\n5x4VDmp43Z88WCQ/7d+1OWd1VgS0XEmgrZGJ42P5YVCrzinpQqp1vip52l6ohh+R\nzFPCknUNAgMBAAECggEAF47lty8jCz9wTkirgijlu5C0xr56FN21jgxtRiQzfrmc\nzMg0a6Vw6folqQs+o/KLwPkCqaJXeMKmGFrkfFI6pXtMgSTp9BJs97mLPq3oTXK6\nN+Dxn34Fsx9UwX840cWlf74Ca2U4hoYic0Ohnxu9sM9NwoUDcRDvTxOePJMALM/y\nupHKcA8/0Ybdwn9b9NL/tsKhomnbNmYydMvuapUHPUf/tdtjO1LDx/Ermr/nigqN\nW5DL/ezZ/3ejWW5AUCg+/Pr155Jy8YLysCKX7GhDMwpRJh+f4aUz3s9DoEMTt7B5\n3hxgiCJO6fDKzbhaz9h/lJXqizfC37PQ5btDEs71sQKBgQDPluc0FI7E97iFdf88\nv09llBRcAQO81GNLUY4SQTQXKtrdCITJFWAKSQ3rAT1Rqo/dCcjbEO76Y6Q0dcRe\nNJWwUg405AXVozxOQbKOQpFZF56cXjnFkY1h6yWFcBvAOfUoO6+IMUNEmJxUBMQI\ncRQHHxQ/tBSCd96InQIpjTgQEQKBgQC5shNzJqMICSunezIYwhbeQizEqzM+q5r9\nXPycJN4ylKntpAG6dXkXFNR1Tg3X5XRquu/L50JjF+3i7kX+7oIk3U+xA0MLYSNZ\nrJdx5GXx9OrKWtG2cS3TRa7gsLNeGDZqxCHBZslBckqqAlYTTspdBwRSZcoaMr9I\nEdEhJk2RPQKBgQC7Mm6eJWe1sVoBaC3Zvv8/L7DIYtXXA4PjGNFQHuJ1fdzN8++i\nUZdAzy4w3PZJ3dBL2JX7DqMiwpYCBK0m8q6FyQksou+r/r7UJyR4awkdWVJb2hCo\n3B+tzFoSoc00pE8yj9gzrZDmm+RlU8LfhfE0ls8wvxi7qpLPiR65D7MdsQKBgQCw\nYFvo+8HOWCeGpJUovvFJmkE7bAD4fbZxAGlPRhVmpZ3hge3CVOH28mn6IXE0p1S0\nK2qombeMt6XT7c2+Hnyu1yZiU17S6CjTfAM8wluyPZblLO4UA9wq1/0KnctAjG7j\nafdF44M1DoGsiRuIq0W6pneMa/JSf/D/Wyzv95mlYQKBgAvm6KqPpMEbkYfKxpki\nrjOvA22d5nOweG5uQK/EziaS72+plmbFx1jbCYVB/eaZZziGISMgbLnISdqK272j\nKz317zPIJLt+eNovBFhvS90EGObDHpwIUeWS99L5+gCAU445HGJzcPpm2m5Zj0Gn\n5LTHcpXdcWZl97LwmWhMS6C+\n-----END PRIVATE KEY-----\n",
+  "client_email": "bigtable@billsgate-351404.iam.gserviceaccount.com",
+  "client_id": "115520843842467663598",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/bigtable%40billsgate-351404.iam.gserviceaccount.com"
+}

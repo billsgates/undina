@@ -14,6 +14,9 @@ import (
 	// "gorm.io/driver/mysql"
 	// "gorm.io/gorm"
 	// "gorm.io/gorm/logger"
+	"context"
+
+	"cloud.google.com/go/bigtable"
 
 	"fmt"
 	"net/http"
@@ -77,6 +80,16 @@ func sayPongJSON(c *gin.Context) {
 func main() {
 	logrus.Info("HTTP server started")
 
+	// BigTable Connection
+	bigtableProject := viper.GetString(`gcloud.projectID`)
+	bigtableInstance := viper.GetString(`gcloud.instanceID`)
+	ctx := context.Background()
+
+	cbt, err := bigtable.NewClient(ctx, bigtableProject, bigtableInstance)
+	if err != nil {
+		logrus.Fatalf("Could not create admin client: %v", err)
+	}
+
 	// Database connection
 	dbHost := viper.GetString(`database.host`)
 	dbPort := viper.GetString(`database.port`)
@@ -139,7 +152,7 @@ func main() {
 
 	timeoutContext := time.Duration(viper.GetInt("context.timeout")) * time.Second
 
-	userRepo := _userRepo.NewmysqlUserRepository(db)
+	userRepo := _userRepo.NewmysqlUserRepository(db, cbt)
 	roomRepo := _roomRepo.NewmysqlRoomRepository(db)
 	serviceRepo := _serviceRepo.NewmysqlServiceRepository(db)
 	participationRepo := _participationRepo.NewmysqlParticipationRepository(db)
