@@ -25,6 +25,7 @@ WORKDIR /app
 
 COPY --from=builder /app/undina /app/undina
 COPY --from=builder /app/config/config.json /app/config/config.json
+COPY --from=builder /app/config/billsgate-351404-56cd186a1380.json /app/config/billsgate-351404-56cd186a1380.json
 
 # need to fix time zone info in alpine docker image (http://www.csyangchen.com/go-alpine-time-location.html)
 COPY --from=builder /usr/local/go/lib/time/zoneinfo.zip /opt/zoneinfo.zip
